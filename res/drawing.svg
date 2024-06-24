@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="63.669224mm"
+   height="63.657707mm"
+   viewBox="0 0 63.669224 63.657707"
+   version="1.1"
+   id="svg1"
+   sodipodi:docname="drawing.svg"
+   inkscape:version="1.3.2 (091e20e, 2023-11-25, custom)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     inkscape:zoom="3.4123585"
+     inkscape:cx="120.29803"
+     inkscape:cy="120.29803"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg1" />
+  <defs
+     id="defs1">
+    <linearGradient
+       id="linearGradient4"
+       inkscape:collect="always">
+      <stop
+         style="stop-color:#00ff00;stop-opacity:1;"
+         offset="0"
+         id="stop5" />
+      <stop
+         style="stop-color:#ffffff;stop-opacity:0;"
+         offset="1"
+         id="stop6" />
+    </linearGradient>
+    <radialGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient4"
+       id="radialGradient6"
+       cx="31.518705"
+       cy="10.738847"
+       fx="31.518705"
+       fy="10.738847"
+       r="19.422966"
+       gradientTransform="matrix(1.3333333,0,0,0.90818365,-12.793571,45.414583)"
+       gradientUnits="userSpaceOnUse" />
+  </defs>
+  <g
+     id="layer1"
+     transform="translate(-38.707142,-88.151039)">
+    <rect
+       style="font-variation-settings:normal;opacity:1;vector-effect:none;fill:#ff0000;fill-opacity:1;stroke:none;stroke-width:4.99999;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;stop-color:#000000;stop-opacity:1"
+       id="rect1"
+       width="31.834345"
+       height="31.834345"
+       x="38.707672"
+       y="88.267967" />
+    <rect
+       style="font-variation-settings:normal;vector-effect:none;fill:#0000ff;fill-opacity:1;stroke:none;stroke-width:4.99999;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;stop-color:#000000"
+       id="rect1-6"
+       width="31.834345"
+       height="31.834345"
+       x="38.707142"
+       y="119.9744" />
+    <rect
+       style="font-variation-settings:normal;vector-effect:none;fill:#ff00ff;fill-opacity:1;stroke:none;stroke-width:4.99999;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;stop-color:#000000"
+       id="rect1-6-6"
+       width="31.834345"
+       height="31.834345"
+       x="70.525482"
+       y="119.90393" />
+    <rect
+       style="font-variation-settings:normal;opacity:1;vector-effect:none;fill:#ffff00;fill-opacity:1;stroke:none;stroke-width:4.99999;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;stop-color:#000000;stop-opacity:1"
+       id="rect2"
+       width="31.834345"
+       height="31.834345"
+       x="70.542023"
+       y="88.151039" />
+  </g>
+  <rect
+     style="fill:url(#radialGradient6);stroke-width:13.9717;stroke-linecap:square;-inkscape-stroke:none"
+     id="rect3"
+     width="51.794575"
+     height="35.27924"
+     x="3.3340819"
+     y="37.527809" />
+  <rect
+     style="fill:#ffffff;fill-opacity:0.64433;stroke-width:7.74906;stroke-linecap:square;-inkscape-stroke:none"
+     id="rect3-2"
+     width="26.750193"
+     height="21.01247"
+     x="23.969233"
+     y="25.443214" />
+</svg>

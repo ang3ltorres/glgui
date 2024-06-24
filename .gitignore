@@ -1,0 +1,6 @@
+.vscode
+build
+
+# External libs
+external/*
+!external/external.zip
