@@ -12,7 +12,7 @@ struct Image {
 
 	Image(Texture *texture, std::int32_t x = 0, std::int32_t y = 0);
 	Image(const Image& image) = delete;
-	~Image();
+	~Image() = default;
 
 	void draw();
 	

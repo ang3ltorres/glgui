@@ -57,7 +57,11 @@ void Image::init() {
 }
 
 void Image::end() {
-	
+
+	glDeleteBuffers(1, &EBO);
+	glDeleteBuffers(1, &VBO);
+	glDeleteVertexArrays(1, &VAO);
+
 	delete Image::imageShader;
 }
 
@@ -67,13 +71,6 @@ Image::Image(Texture *texture, std::int32_t x, std::int32_t y)
 	model = glm::mat4(1.0f);
 	model = glm::translate(model, glm::vec3((float)x, (float)y, 0.0f));
 	model = glm::scale(model, glm::vec3((float)width, (float)height, 0.0f));
-}
-
-Image::~Image() {
-
-	glDeleteBuffers(1, &EBO);
-	glDeleteBuffers(1, &VBO);
-	glDeleteVertexArrays(1, &VAO);
 }
 
 void Image::draw() {

@@ -10,9 +10,11 @@ int main() {
 
 	Texture txr("../res/ISO_C++_Logo.svg", 1280, 720);
 	Texture txr2("../res/PNG_transparency_demonstration_1.png");
+	Texture txr3("../res/beacon.svg", 1920, 1080);
 
 	Image img(&txr);
 	Image img2(&txr2);
+	Image img3(&txr3);
 
 	std::uint8_t g = 0;
 
@@ -25,10 +27,12 @@ int main() {
 		Image::imageShader->use();
 		Image::imageShader->setValue("projection", Engine::projection);
 
-		img.setPosition(img.x, img.y);
 		img.draw();
 
+		img2.setPosition(img2.x + 1, img2.y);
 		img2.draw();
+
+		img3.draw();
 	}
 
 	return Engine::end();
