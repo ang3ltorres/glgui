@@ -4,11 +4,8 @@
 #include <stb_image.h>
 #include <plutosvg.h>
 
-#include <cstdint>
-#include <cstring>
-
 static void RGBA(std::uint8_t *data, std::uint32_t width, std::uint32_t height) {
-	
+
 	// Calculate total number of bytes to process
 	std::size_t numBytes = width * height * 4;
 
@@ -21,7 +18,6 @@ static void RGBA(std::uint8_t *data, std::uint32_t width, std::uint32_t height) 
 		data[i + 2] = temp;
 	}
 }
-
 
 Texture::~Texture() {
 
