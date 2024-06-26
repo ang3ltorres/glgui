@@ -16,18 +16,6 @@ static void RGBA(std::uint8_t *data, std::uint32_t width, std::uint32_t height) 
 
 		std::memcpy(&data[i], temp, sizeof(std::uint8_t) * 4);
 	}
-
-	// for (std::uint32_t y = 0; y < height / 2; y++) {
-
-	// 	for (std::uint32_t x = 0; x < width; x++) {
-
-	// 		std::uint32_t topIndex = y * width * 4 + x * 4;
-	// 		std::uint32_t bottomIndex = (height - 1 - y) * width * 4 + x * 4;
-
-	// 		// Swap pixels using a temporary array
-	// 		std::swap_ranges(&data[topIndex], &data[topIndex + 4], &data[bottomIndex]);
-	// 	}
-	// }
 }
 
 Texture::~Texture() {
@@ -69,7 +57,7 @@ Texture::Texture(const std::string &fileName, std::uint32_t width, std::uint32_t
 	auto surface = plutosvg_load_from_file(fileName.data(), nullptr, width, height, 1.0f);
 	std::uint8_t *data = plutovg_surface_get_data(surface);
 	
-	// Convert ARGB to RGBA and flip Vertically
+	// Convert ARGB to RGBA
 	RGBA(data, width, height);
 
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);

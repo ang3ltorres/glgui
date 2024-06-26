@@ -16,5 +16,4 @@ struct Texture {
 	GLuint id;
 	std::int32_t width;
 	std::int32_t height;
-
 };
