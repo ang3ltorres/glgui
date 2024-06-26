@@ -61,8 +61,13 @@ void Image::end() {
 	delete Image::imageShader;
 }
 
-Image::Image(Texture *texture)
-: texture(*texture), model(glm::mat4(1.0f)), x(0), y(0), width(0), height(0) {}
+Image::Image(Texture *texture, std::int32_t x, std::int32_t y)
+: texture(*texture), model(glm::mat4(1.0f)), x(x), y(y), width(texture->width), height(texture->height) {
+
+	model = glm::mat4(1.0f);
+	model = glm::translate(model, glm::vec3((float)x, (float)y, 0.0f));
+	model = glm::scale(model, glm::vec3((float)width, (float)height, 0.0f));
+}
 
 Image::~Image() {
 

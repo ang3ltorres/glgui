@@ -10,7 +10,7 @@ struct Image {
 	static void end();
 	static Shader *imageShader;
 
-	Image(Texture *texture);
+	Image(Texture *texture, std::int32_t x = 0, std::int32_t y = 0);
 	Image(const Image& image) = delete;
 	~Image();
 

@@ -15,30 +15,27 @@ int main() {
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 	glfwWindowHint(GLFW_RESIZABLE, true);
 
-	GLFWwindow *window = glfwCreateWindow(800, 600, "GL Test", NULL, NULL);
+	GLFWwindow *window = glfwCreateWindow(1280, 720, "GL Test", NULL, NULL);
 	glfwMakeContextCurrent(window);
 	glfwSwapInterval(1);
 	glewInit();
 
-	glViewport(0, 0, 800, 600);
+	glViewport(0, 0, 1280, 720);
 	glEnable(GL_DEBUG_OUTPUT);
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 	glfwSetFramebufferSizeCallback(window, &framebuffer_size_callback);
 
-	projection = glm::ortho(0.0f, 800.0f, 600.0f, 0.0f, -1.0f, 1.0f);
+	projection = glm::ortho(0.0f, 1280.0f, 720.0f, 0.0f, -1.0f, 1.0f);
 
-	Texture txr("../res/ISO_C++_Logo.svg", 800, 600);
+	Texture txr("../res/ISO_C++_Logo.svg", 1280, 720);
 	Texture txr2("../res/PNG_transparency_demonstration_1.png");
 
 	Image::init();
 
 	Image img(&txr);
-	img.setSize(400, 400);
-
 	Image img2(&txr2);
-	img2.setSize(400, 400);
 
 	while (!glfwWindowShouldClose(window)) {
 

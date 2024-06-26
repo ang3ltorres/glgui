@@ -4,19 +4,24 @@
 #include <stb_image.h>
 #include <plutosvg.h>
 
+#include <cstdint>
+#include <cstring>
+
 static void RGBA(std::uint8_t *data, std::uint32_t width, std::uint32_t height) {
+	
+	// Calculate total number of bytes to process
+	std::size_t numBytes = width * height * 4;
 
-	std::uint8_t temp[4];
-	for (std::uint32_t i = 0; i < (width * height * 4); i += 4) {
+	// Process in batches of 4 bytes
+	for (std::size_t i = 0; i < numBytes; i += 4) {
 
-		temp[0] = data[i + 2];
-		temp[1] = data[i + 1];
-		temp[2] = data[i + 0];
-		temp[3] = data[i + 3];
-
-		std::memcpy(&data[i], temp, sizeof(std::uint8_t) * 4);
+		// Swap bytes directly
+		std::uint8_t temp = data[i];
+		data[i] = data[i + 2];
+		data[i + 2] = temp;
 	}
 }
+
 
 Texture::~Texture() {
 
@@ -33,7 +38,7 @@ Texture::Texture(const std::string &fileName) {
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 
-	stbi_set_flip_vertically_on_load(true);
+	stbi_set_flip_vertically_on_load(false);
 	int comp;
 	auto data = stbi_load(fileName.data(), &width, &height, &comp, 4);
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
