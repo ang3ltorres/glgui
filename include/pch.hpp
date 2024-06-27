@@ -5,6 +5,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <functional>
 #include <fmt/core.h>
 #include <cstdint>
 #include <cstring>
