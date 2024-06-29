@@ -94,6 +94,31 @@ Texture::Texture(const std::string &fileName, double dpi) {
 	glBindTexture(GL_TEXTURE_2D, 0);
 }
 
+Texture::Texture(const char *svgString, size_t size, std::uint32_t width, std::uint32_t height)
+: width(width), height(height) {
+
+	glGenTextures(1, &id);
+	glBindTexture(GL_TEXTURE_2D, id);
+
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+
+	// Get data in ARGB format
+
+	auto surface = plutosvg_load_from_memory(svgString, size, nullptr, width, height, 0);
+	std::uint8_t *data = plutovg_surface_get_data(surface);
+	
+	// Convert ARGB to RGBA
+	RGBA(data, width, height);
+
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
+	glGenerateMipmap(GL_TEXTURE_2D);
+	plutovg_surface_destroy(surface);
+	glBindTexture(GL_TEXTURE_2D, 0);
+}
+
 Texture::Texture(std::uint32_t width, std::uint32_t height)
 : width(width), height(height) {
 

@@ -2,6 +2,8 @@
 
 #include "pch.hpp"
 #include "widgets/base.hpp"
+#include "texture.hpp"
+#include "image.hpp"
 
 namespace glgui::widget
 {
@@ -18,9 +20,13 @@ namespace glgui::widget
 		);
 
 		Button(const Button &button) = delete;
-		virtual ~Button() = default;
+		virtual ~Button();
+
+		virtual void draw() override;
 
 		std::function<void(void*)> callbackClick;
+		Texture *txr;
+		Image *img;
 	};
 
 }
