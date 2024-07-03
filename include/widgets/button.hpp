@@ -1,6 +1,7 @@
 #pragma once
 
 #include "pch.hpp"
+#include "utils.hpp"
 #include "widgets/base.hpp"
 #include "texture.hpp"
 #include "image.hpp"
@@ -16,6 +17,7 @@ namespace glgui::widget
 			std::int32_t y,
 			std::int32_t width,
 			std::int32_t height,
+			glgui::Color color,
 			std::function<void(void*)> callbackClick
 		);
 
@@ -24,6 +26,7 @@ namespace glgui::widget
 
 		virtual void draw() override;
 
+		glgui::Color color;
 		std::function<void(void*)> callbackClick;
 		Texture *txr;
 		Image *img;

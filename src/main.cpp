@@ -12,7 +12,7 @@ int main() {
 	Texture txr1("../res/PNG_transparency_demonstration_1.png");
 	Image img1(&txr1);
 
-	glgui::widget::Button b1(50, 0, 1000, 50, nullptr);
+	glgui::widget::Button b1(50, 0, 50, 50, {50, 120, 255}, nullptr);
 
 
 	while (!Engine::windowShouldClose()) {
