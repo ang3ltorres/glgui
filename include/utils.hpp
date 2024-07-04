@@ -13,6 +13,7 @@ namespace glgui
 		~Color() = default;
 
 		std::string rgbString();
+		std::string rgbaString();
 
 		std::uint8_t r;
 		std::uint8_t g;

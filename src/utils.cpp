@@ -15,3 +15,8 @@ std::string glgui::Color::rgbString() {
 
 	return fmt::format("rgb({:d},{:d},{:d})", r, g, b);
 }
+
+std::string glgui::Color::rgbaString() {
+	
+	return fmt::format("rgba({:d},{:d},{:d},{:d})", r, g, b, a);
+}
