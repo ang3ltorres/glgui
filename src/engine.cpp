@@ -14,7 +14,7 @@ static void framebuffer_size_callback(GLFWwindow *window, int width, int height)
 	glViewport(0, 0, width, height);
 }
 
-static void _processInput(GLFWwindow *window) {
+static void processInput(GLFWwindow *window) {
 
 	if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
 		glfwSetWindowShouldClose(window, true);
@@ -58,9 +58,7 @@ bool Engine::windowShouldClose() {
 
 void Engine::processInput() {
 
-	_processInput(Engine::window);
-	glfwSwapBuffers(Engine::window);
-	glfwPollEvents();
+	::processInput(Engine::window);
 }
 
 void Engine::clearScreen(std::uint8_t r, std::uint8_t g, std::uint8_t b) {
