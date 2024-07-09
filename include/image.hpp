@@ -11,7 +11,7 @@ struct Image {
 	static void end();
 	static Shader *imageShader;
 
-	Image(Texture *texture, std::int32_t x = 0, std::int32_t y = 0);
+	Image(Texture *texture, float x = 0, float y = 0);
 	Image(const Image& image) = delete;
 	~Image() = default;
 
@@ -22,6 +22,6 @@ struct Image {
 
 	glgui::Rect rect;
 
-	void setSize(std::int32_t width, std::int32_t height);
-	void setPosition(std::int32_t x, std::int32_t y);
+	void setSize(float width, float height);
+	void setPosition(float x, float y);
 };
