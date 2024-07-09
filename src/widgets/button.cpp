@@ -3,14 +3,11 @@
 
 glgui::widget::Button::Button(
 
-	std::int32_t x,
-	std::int32_t y,
-	std::int32_t width,
-	std::int32_t height,
+	glgui::Rect rect,
 	glgui::Color color,
 	std::function<void(void*)> callbackClick
 )
-: glgui::widget::Base(x, y, width, height), color(color), colorH(255, 255, 255), callbackClick(callbackClick)
+: glgui::widget::Base(rect), color(color), colorH(255, 255, 255), callbackClick(callbackClick)
 {
 	mouseHover = false;
 	std::string svg;
@@ -24,15 +21,15 @@ glgui::widget::Button::Button(
 		</svg>
 		)",
 
-		fmt::arg("widthP3", width+3),
-		fmt::arg("heightP3", height+3),
-		fmt::arg("width", width),
-		fmt::arg("height", height),
+		fmt::arg("widthP3", rect.size.x+3),
+		fmt::arg("heightP3", rect.size.y+3),
+		fmt::arg("width", rect.size.x),
+		fmt::arg("height", rect.size.y),
 		fmt::arg("color", color.rgbString())
 	);
 
-	txr = new Texture(svg.c_str(), svg.size(), width+3, height+3);
-	img = new Image(txr, x, y);
+	txr = new Texture(svg.c_str(), svg.size(), rect.size.x+3, rect.size.y+3);
+	img = new Image(txr, rect.pos.x, rect.pos.y);
 
 	// Hover texture
 	svg = fmt::format(
@@ -43,14 +40,14 @@ glgui::widget::Button::Button(
 		</svg>
 		)",
 
-		fmt::arg("widthP3", width+3),
-		fmt::arg("heightP3", height+3),
-		fmt::arg("width", width),
-		fmt::arg("height", height),
+		fmt::arg("widthP3", rect.size.x+3),
+		fmt::arg("heightP3", rect.size.y+3),
+		fmt::arg("width", rect.size.x),
+		fmt::arg("height", rect.size.y),
 		fmt::arg("color", colorH.rgbString())
 	);
 
-	txrH = new Texture(svg.c_str(), svg.size(), width+3, height+3);
+	txrH = new Texture(svg.c_str(), svg.size(), rect.size.x+3, rect.size.y+3);
 }
 
 glgui::widget::Button::~Button()
@@ -62,13 +59,8 @@ glgui::widget::Button::~Button()
 
 void glgui::widget::Button::draw()
 {
-	fmt::print("X: {:d}\tY: {:d}\n", Engine::mousePosX, Engine::mousePosY);
 
 	// Check mouse position
-	mouseHover = (
-	Engine::mousePosX >= img->x and Engine::mousePosX <= img->x + img->width and
-	Engine::mousePosY >= img->y and Engine::mousePosY <= img->y + img->height);
-
-	img->texture = mouseHover ? txrH : txr;
+	img->texture = rect.collision(Engine::mousePos) ? txrH : txr;
 	img->draw();
 }

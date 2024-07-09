@@ -3,6 +3,7 @@
 #include "pch.hpp"
 #include "texture.hpp"
 #include "shader.hpp"
+#include "utils.hpp"
 
 struct Image {
 
@@ -19,11 +20,7 @@ struct Image {
 	Texture *texture;
 	glm::mat4 model;
 
-	std::int32_t x;
-	std::int32_t y;
-
-	std::int32_t width;
-	std::int32_t height;
+	glgui::Rect rect;
 
 	void setSize(std::int32_t width, std::int32_t height);
 	void setPosition(std::int32_t x, std::int32_t y);

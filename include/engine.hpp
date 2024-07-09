@@ -1,6 +1,7 @@
 #pragma once
 
 #include "pch.hpp"
+#include "utils.hpp"
 
 struct Engine {
 
@@ -19,6 +20,5 @@ struct Engine {
 	static std::uint32_t screenHeight;
 	static glm::highp_mat4 projection;
 
-	static std::int32_t mousePosX;
-	static std::int32_t mousePosY;
+	static glgui::Vec2 mousePos;
 };

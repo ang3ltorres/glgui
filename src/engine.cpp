@@ -5,8 +5,7 @@ GLFWwindow *Engine::window;
 std::uint32_t Engine::screenWidth;
 std::uint32_t Engine::screenHeight;
 glm::highp_mat4 Engine::projection;
-std::int32_t Engine::mousePosX;
-std::int32_t Engine::mousePosY;
+glgui::Vec2 Engine::mousePos;
 
 static void framebuffer_size_callback(GLFWwindow *window, int width, int height) {
 
@@ -21,8 +20,8 @@ static void cursor_pos_callback(GLFWwindow* window, double xpos, double ypos) {
 
 	UNUSED(window);
 
-	Engine::mousePosX = xpos;
-	Engine::mousePosY = ypos;
+	Engine::mousePos.x = xpos;
+	Engine::mousePos.y = ypos;
 }
 
 static void processInput(GLFWwindow *window) {
@@ -55,9 +54,6 @@ void Engine::init() {
 	Engine::projection = glm::ortho(0.0f, 1280.0f, 720.0f, 0.0f, -1.0f, 1.0f);
 
 	Image::init();
-
-	Engine::mousePosX = 0;
-	Engine::mousePosY = 0;
 }
 
 bool Engine::end() {

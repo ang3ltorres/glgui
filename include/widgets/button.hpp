@@ -13,10 +13,7 @@ namespace glgui::widget
 
 		Button(
 
-			std::int32_t x,
-			std::int32_t y,
-			std::int32_t width,
-			std::int32_t height,
+			Rect rect,
 			glgui::Color color,
 			std::function<void(void*)> callbackClick
 		);

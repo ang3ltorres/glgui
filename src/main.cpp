@@ -26,7 +26,7 @@ int main() {
 	Texture txr1("../res/PNG_transparency_demonstration_1.png");
 	Image img1(&txr1);
 
-	glgui::widget::Button b1(50, 0, 50, 50, {50, 120, 255}, nullptr);
+	glgui::widget::Button b1({50, 0, 50, 50}, {50, 120, 255}, nullptr);
 
 
 	while (!Engine::windowShouldClose()) {
@@ -39,7 +39,7 @@ int main() {
 			Image::imageShader->use();
 			Image::imageShader->setValue("projection", Engine::projection);
 
-			img1.setPosition(img1.x + 1, img1.y);
+			img1.setPosition(img1.rect.pos.x + 1, img1.rect.pos.y);
 			img1.draw();
 
 			b1.draw();

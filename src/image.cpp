@@ -66,11 +66,11 @@ void Image::end() {
 }
 
 Image::Image(Texture *texture, std::int32_t x, std::int32_t y)
-: texture(texture), model(glm::mat4(1.0f)), x(x), y(y), width(texture->width), height(texture->height) {
+: texture(texture), model(glm::mat4(1.0f)), rect({x, y}, {texture->width, texture->height}) {
 
 	model = glm::mat4(1.0f);
-	model = glm::translate(model, glm::vec3((float)x, (float)y, 0.0f));
-	model = glm::scale(model, glm::vec3((float)width, (float)height, 0.0f));
+	model = glm::translate(model, glm::vec3(rect.pos.x, rect.pos.y, 0.0f));
+	model = glm::scale(model, glm::vec3(rect.size.x, rect.size.y, 0.0f));
 }
 
 void Image::draw() {
@@ -85,8 +85,8 @@ void Image::draw() {
 
 void Image::setSize(std::int32_t width, std::int32_t height) {
 
-	this->width = width;
-	this->height = height;
+	rect.size.x = width;
+	rect.size.y = height;
 
 	model = glm::scale(model, glm::vec3((float)width, (float)height, 0.0f));
 
@@ -104,12 +104,12 @@ void Image::setSize(std::int32_t width, std::int32_t height) {
 
 void Image::setPosition(std::int32_t x, std::int32_t y) {
 
-	this->x = x;
-	this->y = y;
+	rect.pos.x = x;
+	rect.pos.y = y;
 
 	model = glm::mat4(1.0f);
-	model = glm::translate(model, glm::vec3((float)x, (float)y, 0.0f));
-	model = glm::scale(model, glm::vec3((float)width, (float)height, 0.0f));
+	model = glm::translate(model, glm::vec3(rect.pos.x, rect.pos.y, 0.0f));
+	model = glm::scale(model, glm::vec3(rect.size.x, rect.size.y, 0.0f));
 }
 
 
