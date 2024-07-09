@@ -18,6 +18,11 @@ void key_callback (GLFWwindow* window, int key, int scancode, int action, int mo
 
 }
 
+static void button_callback(void* data) {
+
+	fmt::println("Button clicked");
+}
+
 int main() {
 
 	Engine::init();
@@ -26,7 +31,7 @@ int main() {
 	Texture txr1("../res/PNG_transparency_demonstration_1.png");
 	Image img1(&txr1);
 
-	glgui::widget::Button b1({50, 0, 50, 50}, {50, 120, 255}, nullptr);
+	glgui::widget::Button b1({50, 0, 50, 50}, {50, 120, 255}, &button_callback);
 
 
 	while (!Engine::windowShouldClose()) {

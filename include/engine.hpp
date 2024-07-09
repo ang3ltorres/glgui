@@ -21,4 +21,8 @@ struct Engine {
 	static glm::highp_mat4 projection;
 
 	static glgui::Vec2 mousePos;
+	static bool mouseClick;
+
+	// TODO
+	static std::vector<>
 };

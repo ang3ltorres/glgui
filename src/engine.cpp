@@ -24,6 +24,22 @@ static void cursor_pos_callback(GLFWwindow* window, double xpos, double ypos) {
 	Engine::mousePos.y = ypos;
 }
 
+static void mouse_button_callback(GLFWwindow* window, int button, int action, int mods) {
+
+	UNUSED(window);
+	UNUSED(mods);
+
+	if (button == GLFW_MOUSE_BUTTON_LEFT and action == GLFW_PRESS)
+		Engine::mouseClick = true;
+
+	if (button == GLFW_MOUSE_BUTTON_LEFT and action == GLFW_RELEASE)
+		Engine::mouseClick = false;
+
+	// Check all clickable widgets
+}
+
+
+
 static void processInput(GLFWwindow *window) {
 
 	if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
@@ -50,8 +66,12 @@ void Engine::init() {
 
 	glfwSetFramebufferSizeCallback(Engine::window, &framebuffer_size_callback);
 	glfwSetCursorPosCallback(Engine::window, &cursor_pos_callback);
+	glfwSetMouseButtonCallback(Engine::window, &mouse_button_callback);
 
 	Engine::projection = glm::ortho(0.0f, 1280.0f, 720.0f, 0.0f, -1.0f, 1.0f);
+	Engine::mousePos.x = 0.0f;
+	Engine::mousePos.y = 0.0f;
+	Engine::mouseClick = false;
 
 	Image::init();
 }
