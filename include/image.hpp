@@ -16,7 +16,7 @@ struct Image {
 
 	void draw();
 	
-	Texture &texture;
+	Texture *texture;
 	glm::mat4 model;
 
 	std::int32_t x;

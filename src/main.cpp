@@ -31,7 +31,7 @@ int main() {
 
 	while (!Engine::windowShouldClose()) {
 
-		if (render) {
+		if (true) {
 
 			Engine::processInput();
 			Engine::clearScreen(255, 0, 255);

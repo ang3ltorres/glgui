@@ -12,7 +12,7 @@ glgui::widget::Button::Button(
 )
 : glgui::widget::Base(x, y, width, height), color(color), colorH(255, 255, 255), callbackClick(callbackClick)
 {
-	mouseHover = true;
+	mouseHover = false;
 	std::string svg;
 
 	// Normal texture
@@ -65,15 +65,10 @@ void glgui::widget::Button::draw()
 	fmt::print("X: {:d}\tY: {:d}\n", Engine::mousePosX, Engine::mousePosY);
 
 	// Check mouse position
-	if (Engine::mousePosX >= img->x and Engine::mousePosX <= img->x + img->width)
-		mouseHover = true;
-	else
-		mouseHover = false;
+	mouseHover = (
+	Engine::mousePosX >= img->x and Engine::mousePosX <= img->x + img->width and
+	Engine::mousePosY >= img->y and Engine::mousePosY <= img->y + img->height);
 
-	if (mouseHover)
-		img->texture = *txrH;
-	else
-		img->texture = *txr;
-
+	img->texture = mouseHover ? txrH : txr;
 	img->draw();
 }
