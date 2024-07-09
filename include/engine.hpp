@@ -18,4 +18,7 @@ struct Engine {
 	static std::uint32_t screenWidth;
 	static std::uint32_t screenHeight;
 	static glm::highp_mat4 projection;
+
+	static std::int32_t mousePosX;
+	static std::int32_t mousePosY;
 };

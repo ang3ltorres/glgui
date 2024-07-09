@@ -5,6 +5,8 @@ GLFWwindow *Engine::window;
 std::uint32_t Engine::screenWidth;
 std::uint32_t Engine::screenHeight;
 glm::highp_mat4 Engine::projection;
+std::int32_t Engine::mousePosX;
+std::int32_t Engine::mousePosY;
 
 static void framebuffer_size_callback(GLFWwindow *window, int width, int height) {
 
@@ -12,6 +14,15 @@ static void framebuffer_size_callback(GLFWwindow *window, int width, int height)
 	// glViewport(0, 0, width, height);
 	Engine::projection = glm::ortho(0.0f, (float)width, (float)height, 0.0f, -1.0f, 1.0f);
 	glViewport(0, 0, width, height);
+}
+
+
+static void cursor_pos_callback(GLFWwindow* window, double xpos, double ypos) {
+
+	UNUSED(window);
+
+	Engine::mousePosX = xpos;
+	Engine::mousePosY = ypos;
 }
 
 static void processInput(GLFWwindow *window) {
@@ -39,10 +50,14 @@ void Engine::init() {
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 	glfwSetFramebufferSizeCallback(Engine::window, &framebuffer_size_callback);
+	glfwSetCursorPosCallback(Engine::window, &cursor_pos_callback);
 
 	Engine::projection = glm::ortho(0.0f, 1280.0f, 720.0f, 0.0f, -1.0f, 1.0f);
 
 	Image::init();
+
+	Engine::mousePosX = 0;
+	Engine::mousePosY = 0;
 }
 
 bool Engine::end() {

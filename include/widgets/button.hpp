@@ -27,9 +27,15 @@ namespace glgui::widget
 		virtual void draw() override;
 
 		glgui::Color color;
+		glgui::Color colorH;
 		std::function<void(void*)> callbackClick;
+
+		bool mouseHover;
+		
 		Texture *txr;
 		Image *img;
+
+		Texture *txrH;
 	};
 
 }

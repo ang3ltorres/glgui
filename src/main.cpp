@@ -5,22 +5,23 @@
 #include "engine.hpp"
 #include "widgets/button.hpp"
 
-bool mouseMoved = false;
+bool render = true;
 
-void cursor_position_callback(GLFWwindow* window, double xpos, double ypos) {
+void key_callback (GLFWwindow* window, int key, int scancode, int action, int mods) {
 
 	UNUSED(window);
-	UNUSED(xpos);
-	UNUSED(ypos);
+	UNUSED(scancode);
+	UNUSED(mods);
 
-	// Update mouse movement flag
-	mouseMoved = true;
+	if (key == GLFW_KEY_SPACE && action == GLFW_PRESS)
+		render = true;
+
 }
 
 int main() {
 
 	Engine::init();
-	glfwSetCursorPosCallback(Engine::window, cursor_position_callback);
+	glfwSetKeyCallback(Engine::window, &key_callback);
 
 	Texture txr1("../res/PNG_transparency_demonstration_1.png");
 	Image img1(&txr1);
@@ -30,8 +31,7 @@ int main() {
 
 	while (!Engine::windowShouldClose()) {
 
-
-		if (mouseMoved) {
+		if (render) {
 
 			Engine::processInput();
 			Engine::clearScreen(255, 0, 255);
@@ -46,7 +46,7 @@ int main() {
 
 			// Swap buffers and poll events
 			glfwSwapBuffers(Engine::window);
-			mouseMoved = false;
+			render = false;
 
 		} else {
 
