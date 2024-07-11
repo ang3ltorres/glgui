@@ -1,22 +1,22 @@
 #include "engine.hpp"
 #include "image.hpp"
 
-GLFWwindow *Engine::window;
-std::uint32_t Engine::screenWidth;
-std::uint32_t Engine::screenHeight;
-glm::highp_mat4 Engine::projection;
+GLFWwindow *glgui::Engine::window;
+std::uint32_t glgui::Engine::screenWidth;
+std::uint32_t glgui::Engine::screenHeight;
+glm::highp_mat4 glgui::Engine::projection;
 
-glgui::Vec2 Engine::mousePos;
-bool Engine::mouseClick;
+glgui::Vec2 glgui::Engine::mousePos;
+bool glgui::Engine::mouseClick;
 
-std::vector<glgui::widget::Base*> Engine::widgets;
-std::vector<glgui::widget::Button*> Engine::buttons;
+std::vector<glgui::widget::Base*> glgui::Engine::widgets;
+std::vector<glgui::widget::Button*> glgui::Engine::buttons;
 
 static void framebuffer_size_callback(GLFWwindow *window, int width, int height) {
 
 	UNUSED(window);
 	// glViewport(0, 0, width, height);
-	Engine::projection = glm::ortho(0.0f, (float)width, (float)height, 0.0f, -1.0f, 1.0f);
+	glgui::Engine::projection = glm::ortho(0.0f, (float)width, (float)height, 0.0f, -1.0f, 1.0f);
 	glViewport(0, 0, width, height);
 }
 
@@ -25,8 +25,8 @@ static void cursor_pos_callback(GLFWwindow* window, double xpos, double ypos) {
 
 	UNUSED(window);
 
-	Engine::mousePos.x = xpos;
-	Engine::mousePos.y = ypos;
+	glgui::Engine::mousePos.x = xpos;
+	glgui::Engine::mousePos.y = ypos;
 }
 
 static void mouse_button_callback(GLFWwindow* window, int button, int action, int mods) {
@@ -35,15 +35,21 @@ static void mouse_button_callback(GLFWwindow* window, int button, int action, in
 	UNUSED(mods);
 
 	if (button == GLFW_MOUSE_BUTTON_LEFT and action == GLFW_PRESS)
-		Engine::mouseClick = true;
+		glgui::Engine::mouseClick = true;
 
 	if (button == GLFW_MOUSE_BUTTON_LEFT and action == GLFW_RELEASE)
-		Engine::mouseClick = false;
+		glgui::Engine::mouseClick = false;
 
 	// Check all clickable widgets
+	if (button == GLFW_MOUSE_BUTTON_LEFT and action == GLFW_PRESS) {
+
+		for (const auto &i : glgui::Engine::buttons) {
+
+			if (i->rect.collision(glgui::Engine::mousePos))
+				i->callbackClick(nullptr);
+		}
+	}
 }
-
-
 
 static void processInput(GLFWwindow *window) {
 
@@ -51,7 +57,7 @@ static void processInput(GLFWwindow *window) {
 		glfwSetWindowShouldClose(window, true);
 }
 
-void Engine::init() {
+void glgui::Engine::init() {
 
 	glfwInit();
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
@@ -59,45 +65,45 @@ void Engine::init() {
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 	glfwWindowHint(GLFW_RESIZABLE, true);
 
-	Engine::window = glfwCreateWindow(1280, 720, "GL Test", NULL, NULL);
-	glfwMakeContextCurrent(Engine::window);
+	glgui::Engine::window = glfwCreateWindow(1280, 720, "GL Test", NULL, NULL);
+	glfwMakeContextCurrent(glgui::Engine::window);
 	glfwSwapInterval(1);
 	glewInit();
 
 	glViewport(0, 0, 1280, 720);
-	glEnable(GL_DEBUG_OUTPUT);
+	// glEnable(GL_DEBUG_OUTPUT);
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-	glfwSetFramebufferSizeCallback(Engine::window, &framebuffer_size_callback);
-	glfwSetCursorPosCallback(Engine::window, &cursor_pos_callback);
-	glfwSetMouseButtonCallback(Engine::window, &mouse_button_callback);
+	glfwSetFramebufferSizeCallback(glgui::Engine::window, &framebuffer_size_callback);
+	glfwSetCursorPosCallback(glgui::Engine::window, &cursor_pos_callback);
+	glfwSetMouseButtonCallback(glgui::Engine::window, &mouse_button_callback);
 
-	Engine::projection = glm::ortho(0.0f, 1280.0f, 720.0f, 0.0f, -1.0f, 1.0f);
-	Engine::mousePos.x = 0.0f;
-	Engine::mousePos.y = 0.0f;
-	Engine::mouseClick = false;
+	glgui::Engine::projection = glm::ortho(0.0f, 1280.0f, 720.0f, 0.0f, -1.0f, 1.0f);
+	glgui::Engine::mousePos.x = 0.0f;
+	glgui::Engine::mousePos.y = 0.0f;
+	glgui::Engine::mouseClick = false;
 
 	Image::init();
 }
 
-bool Engine::end() {
+bool glgui::Engine::end() {
 
 	glfwTerminate();
 	return 0;
 }
 
-bool Engine::windowShouldClose() {
+bool glgui::Engine::windowShouldClose() {
 
-	return glfwWindowShouldClose(Engine::window);
+	return glfwWindowShouldClose(glgui::Engine::window);
 }
 
-void Engine::processInput() {
+void glgui::Engine::processInput() {
 
-	::processInput(Engine::window);
+	::processInput(glgui::Engine::window);
 }
 
-void Engine::clearScreen(std::uint8_t r, std::uint8_t g, std::uint8_t b) {
+void glgui::Engine::clearScreen(std::uint8_t r, std::uint8_t g, std::uint8_t b) {
 
 	glClearColor(r / 255.0f, g / 255.0f, b / 255.0f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT);

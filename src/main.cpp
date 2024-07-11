@@ -25,35 +25,35 @@ static void button_callback(void* data) {
 
 int main() {
 
-	Engine::init();
-	glfwSetKeyCallback(Engine::window, &key_callback);
+	glgui::Engine::init();
+	glfwSetKeyCallback(glgui::Engine::window, &key_callback);
 
-	Texture txr1("../res/PNG_transparency_demonstration_1.png");
-	Image img1(&txr1);
+	glgui::Texture txr1("../res/PNG_transparency_demonstration_1.png");
+	glgui::Image img1(&txr1);
 
 	glgui::widget::Button b1({50, 0, 50, 50}, {50, 120, 255}, &button_callback);
 
 
-	while (!Engine::windowShouldClose()) {
+	while (!glgui::Engine::windowShouldClose()) {
 
 		if (true) {
 
-			Engine::processInput();
-			Engine::clearScreen(255, 0, 255);
+			glgui::Engine::processInput();
+			glgui::Engine::clearScreen(255, 0, 255);
 
-			Image::imageShader->use();
-			Image::imageShader->setValue("projection", Engine::projection);
+			glgui::Image::imageShader->use();
+			glgui::Image::imageShader->setValue("projection", glgui::Engine::projection);
 
 			img1.setPosition(img1.rect.pos.x + 1, img1.rect.pos.y);
 			img1.draw();
 
 			// b1.draw();
 
-			for (const auto &i : Engine::widgets)
+			for (const auto &i : glgui::Engine::widgets)
 				i->draw();
 
-			// Swap buffers and poll events
-			glfwSwapBuffers(Engine::window);
+			// Swap buffers
+			glfwSwapBuffers(glgui::Engine::window);
 			render = false;
 
 		} else {
@@ -66,7 +66,5 @@ int main() {
 		glfwPollEvents();
 	}
 
-
-
-	return Engine::end();
+	return glgui::Engine::end();
 }

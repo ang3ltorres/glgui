@@ -19,12 +19,12 @@ static void RGBA(std::uint8_t *data, std::uint32_t width, std::uint32_t height) 
 	}
 }
 
-Texture::~Texture() {
+glgui::Texture::~Texture() {
 
 	glDeleteTextures(1, &id);
 }
 
-Texture::Texture(const std::string &fileName) {
+glgui::Texture::Texture(const std::string &fileName) {
 
 	glGenTextures(1, &id);
 	glBindTexture(GL_TEXTURE_2D, id);
@@ -43,7 +43,7 @@ Texture::Texture(const std::string &fileName) {
 	glBindTexture(GL_TEXTURE_2D, 0);
 }
 
-Texture::Texture(const std::string &fileName, std::uint32_t width, std::uint32_t height)
+glgui::Texture::Texture(const std::string &fileName, std::uint32_t width, std::uint32_t height)
 : width(width), height(height) {
 
 	glGenTextures(1, &id);
@@ -67,7 +67,7 @@ Texture::Texture(const std::string &fileName, std::uint32_t width, std::uint32_t
 	glBindTexture(GL_TEXTURE_2D, 0);
 }
 
-Texture::Texture(const std::string &fileName, double dpi) {
+glgui::Texture::Texture(const std::string &fileName, double dpi) {
 
 	glGenTextures(1, &id);
 	glBindTexture(GL_TEXTURE_2D, id);
@@ -94,7 +94,7 @@ Texture::Texture(const std::string &fileName, double dpi) {
 	glBindTexture(GL_TEXTURE_2D, 0);
 }
 
-Texture::Texture(const char *svgString, size_t size, std::uint32_t width, std::uint32_t height)
+glgui::Texture::Texture(const char *svgString, size_t size, std::uint32_t width, std::uint32_t height)
 : width(width), height(height) {
 
 	glGenTextures(1, &id);
@@ -119,7 +119,7 @@ Texture::Texture(const char *svgString, size_t size, std::uint32_t width, std::u
 	glBindTexture(GL_TEXTURE_2D, 0);
 }
 
-Texture::Texture(std::uint32_t width, std::uint32_t height)
+glgui::Texture::Texture(std::uint32_t width, std::uint32_t height)
 : width(width), height(height) {
 
 	glGenTextures(1, &id);

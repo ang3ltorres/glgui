@@ -11,7 +11,7 @@ static GLchar* readFile(const std::string &fileName) {
 	return string;
 }
 
-Shader::Shader(const std::string &vertexShader, const std::string &fragmentShader, const std::string &geometryShader) {
+glgui::Shader::Shader(const std::string &vertexShader, const std::string &fragmentShader, const std::string &geometryShader) {
 
 	std::string infoLog;
 	infoLog.resize(1024);
@@ -91,23 +91,23 @@ Shader::Shader(const std::string &vertexShader, const std::string &fragmentShade
 		glDeleteShader(GShader);
 }
 
-void Shader::use() {
+void glgui::Shader::use() {
 
 	glUseProgram(id);
 }
 
-template <> void Shader::setValue<glm::mat4>(const std::string &name, glm::mat4 v) { glUniformMatrix4fv(glGetUniformLocation(id, name.data()), 1, false, value_ptr(v)); }
-template <> void Shader::setValue<glm::mat3>(const std::string &name, glm::mat3 v) { glUniformMatrix3fv(glGetUniformLocation(id, name.data()), 1, false, value_ptr(v)); }
-template <> void Shader::setValue<glm::mat2>(const std::string &name, glm::mat2 v) { glUniformMatrix2fv(glGetUniformLocation(id, name.data()), 1, false, value_ptr(v)); }
+template <> void glgui::Shader::setValue<glm::mat4>(const std::string &name, glm::mat4 v) { glUniformMatrix4fv(glGetUniformLocation(id, name.data()), 1, false, value_ptr(v)); }
+template <> void glgui::Shader::setValue<glm::mat3>(const std::string &name, glm::mat3 v) { glUniformMatrix3fv(glGetUniformLocation(id, name.data()), 1, false, value_ptr(v)); }
+template <> void glgui::Shader::setValue<glm::mat2>(const std::string &name, glm::mat2 v) { glUniformMatrix2fv(glGetUniformLocation(id, name.data()), 1, false, value_ptr(v)); }
 
-template <> void Shader::setValue<glm::vec4>(const std::string &name, glm::vec4 v) { glUniform4fv(glGetUniformLocation(id, name.data()), 1, value_ptr(v)); }
-template <> void Shader::setValue<glm::vec3>(const std::string &name, glm::vec3 v) { glUniform3fv(glGetUniformLocation(id, name.data()), 1, value_ptr(v)); }
-template <> void Shader::setValue<glm::vec2>(const std::string &name, glm::vec2 v) { glUniform2fv(glGetUniformLocation(id, name.data()), 1, value_ptr(v)); }
+template <> void glgui::Shader::setValue<glm::vec4>(const std::string &name, glm::vec4 v) { glUniform4fv(glGetUniformLocation(id, name.data()), 1, value_ptr(v)); }
+template <> void glgui::Shader::setValue<glm::vec3>(const std::string &name, glm::vec3 v) { glUniform3fv(glGetUniformLocation(id, name.data()), 1, value_ptr(v)); }
+template <> void glgui::Shader::setValue<glm::vec2>(const std::string &name, glm::vec2 v) { glUniform2fv(glGetUniformLocation(id, name.data()), 1, value_ptr(v)); }
 
-template <> void Shader::setValue<int>(const std::string &name, int v) { glUniform1i(glGetUniformLocation(id, name.data()), v); }
-template <> void Shader::setValue<float>(const std::string &name, float v) { glUniform1f(glGetUniformLocation(id, name.data()), v); }
-template <> void Shader::setValue<unsigned int>(const std::string &name, unsigned int v) { glUniform1ui(glGetUniformLocation(id, name.data()), v); }
+template <> void glgui::Shader::setValue<int>(const std::string &name, int v) { glUniform1i(glGetUniformLocation(id, name.data()), v); }
+template <> void glgui::Shader::setValue<float>(const std::string &name, float v) { glUniform1f(glGetUniformLocation(id, name.data()), v); }
+template <> void glgui::Shader::setValue<unsigned int>(const std::string &name, unsigned int v) { glUniform1ui(glGetUniformLocation(id, name.data()), v); }
 
-void Shader::setValue(const std::string &name, float x, float y, float z, float w) { glUniform4f(glGetUniformLocation(id, name.data()), x, y, z, w); }
-void Shader::setValue(const std::string &name, float x, float y, float z) { glUniform3f(glGetUniformLocation(id, name.data()), x, y, z); }
-void Shader::setValue(const std::string &name, float x, float y) { glUniform2f(glGetUniformLocation(id, name.data()), x, y); }
+void glgui::Shader::setValue(const std::string &name, float x, float y, float z, float w) { glUniform4f(glGetUniformLocation(id, name.data()), x, y, z, w); }
+void glgui::Shader::setValue(const std::string &name, float x, float y, float z) { glUniform3f(glGetUniformLocation(id, name.data()), x, y, z); }
+void glgui::Shader::setValue(const std::string &name, float x, float y) { glUniform2f(glGetUniformLocation(id, name.data()), x, y); }

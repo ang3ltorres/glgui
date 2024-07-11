@@ -1,6 +1,6 @@
 #include "image.hpp"
 
-Shader *Image::imageShader = nullptr;
+glgui::Shader *glgui::Image::imageShader = nullptr;
 
 static GLuint VAO;
 static GLuint VBO;
@@ -21,10 +21,10 @@ static const GLuint indices[] = {
 	1, 2, 3
 };
 	
-void Image::init() {
+void glgui::Image::init() {
 
-	Image::imageShader = new Shader("../res/shaders/image.vert", "../res/shaders/image.frag", "../res/shaders/image.geom");
-	Image::imageShader->setValue("image", 0);
+	glgui::Image::imageShader = new Shader("../res/shaders/image.vert", "../res/shaders/image.frag", "../res/shaders/image.geom");
+	glgui::Image::imageShader->setValue("image", 0);
 
 	glGenVertexArrays(1, &VAO);
 	glGenBuffers(1, &VBO);
@@ -56,16 +56,16 @@ void Image::init() {
 	glBindVertexArray(0);
 }
 
-void Image::end() {
+void glgui::Image::end() {
 
 	glDeleteBuffers(1, &EBO);
 	glDeleteBuffers(1, &VBO);
 	glDeleteVertexArrays(1, &VAO);
 
-	delete Image::imageShader;
+	delete glgui::Image::imageShader;
 }
 
-Image::Image(Texture *texture, float x, float y)
+glgui::Image::Image(Texture *texture, float x, float y)
 : texture(texture), model(glm::mat4(1.0f)), rect({x, y}, {(float)texture->width, (float)texture->height}) {
 
 	model = glm::mat4(1.0f);
@@ -73,9 +73,9 @@ Image::Image(Texture *texture, float x, float y)
 	model = glm::scale(model, glm::vec3(rect.size.x, rect.size.y, 0.0f));
 }
 
-void Image::draw() {
+void glgui::Image::draw() {
 
-	Image::imageShader->setValue("model", model);
+	glgui::Image::imageShader->setValue("model", model);
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, texture->id);
 	glBindVertexArray(VAO);
@@ -83,7 +83,7 @@ void Image::draw() {
 	glBindVertexArray(0);
 }
 
-void Image::setSize(float width, float height) {
+void glgui::Image::setSize(float width, float height) {
 
 	rect.size.x = width;
 	rect.size.y = height;
@@ -102,7 +102,7 @@ void Image::setSize(float width, float height) {
 	// glNamedBufferData(VBO, sizeof(vertices), vertices, GL_DYNAMIC_DRAW);
 }
 
-void Image::setPosition(float x, float y) {
+void glgui::Image::setPosition(float x, float y) {
 
 	rect.pos.x = x;
 	rect.pos.y = y;

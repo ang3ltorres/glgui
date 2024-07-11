@@ -5,23 +5,26 @@
 #include "shader.hpp"
 #include "utils.hpp"
 
-struct Image {
+namespace glgui
+{
+	struct Image {
 
-	static void init();
-	static void end();
-	static Shader *imageShader;
+		static void init();
+		static void end();
+		static Shader *imageShader;
 
-	Image(Texture *texture, float x = 0, float y = 0);
-	Image(const Image& image) = delete;
-	~Image() = default;
+		Image(Texture *texture, float x = 0, float y = 0);
+		Image(const Image& image) = delete;
+		~Image() = default;
 
-	void draw();
-	
-	Texture *texture;
-	glm::mat4 model;
+		void draw();
+		
+		Texture *texture;
+		glm::mat4 model;
 
-	glgui::Rect rect;
+		glgui::Rect rect;
 
-	void setSize(float width, float height);
-	void setPosition(float x, float y);
-};
+		void setSize(float width, float height);
+		void setPosition(float x, float y);
+	};
+}
