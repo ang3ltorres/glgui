@@ -23,6 +23,7 @@ namespace glgui
 		static std::uint32_t screenHeight;
 		static glm::highp_mat4 projection;
 
+		static bool doRender;
 		static glgui::Vec2 mousePos;
 		static bool mouseClick;
 

@@ -5,38 +5,25 @@
 #include "engine.hpp"
 #include "widgets/button.hpp"
 
-bool render = true;
-
-void key_callback (GLFWwindow* window, int key, int scancode, int action, int mods) {
-
-	UNUSED(window);
-	UNUSED(scancode);
-	UNUSED(mods);
-
-	if (key == GLFW_KEY_SPACE && action == GLFW_PRESS)
-		render = true;
-
-}
 
 static void button_callback(void* data) {
 
+	UNUSED(data);
 	fmt::println("Button clicked");
 }
 
 int main() {
 
 	glgui::Engine::init();
-	glfwSetKeyCallback(glgui::Engine::window, &key_callback);
 
 	glgui::Texture txr1("../res/PNG_transparency_demonstration_1.png");
 	glgui::Image img1(&txr1);
 
 	glgui::widget::Button b1({50, 0, 50, 50}, {50, 120, 255}, &button_callback);
 
-
 	while (!glgui::Engine::windowShouldClose()) {
 
-		if (true) {
+		if (glgui::Engine::doRender) {
 
 			glgui::Engine::processInput();
 			glgui::Engine::clearScreen(255, 0, 255);
@@ -54,7 +41,7 @@ int main() {
 
 			// Swap buffers
 			glfwSwapBuffers(glgui::Engine::window);
-			render = false;
+			glgui::Engine::doRender = false;
 
 		} else {
 
