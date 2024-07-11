@@ -47,7 +47,10 @@ int main() {
 			img1.setPosition(img1.rect.pos.x + 1, img1.rect.pos.y);
 			img1.draw();
 
-			b1.draw();
+			// b1.draw();
+
+			for (const auto &i : Engine::widgets)
+				i->draw();
 
 			// Swap buffers and poll events
 			glfwSwapBuffers(Engine::window);

@@ -5,7 +5,12 @@ GLFWwindow *Engine::window;
 std::uint32_t Engine::screenWidth;
 std::uint32_t Engine::screenHeight;
 glm::highp_mat4 Engine::projection;
+
 glgui::Vec2 Engine::mousePos;
+bool Engine::mouseClick;
+
+std::vector<glgui::widget::Base*> Engine::widgets;
+std::vector<glgui::widget::Button*> Engine::buttons;
 
 static void framebuffer_size_callback(GLFWwindow *window, int width, int height) {
 

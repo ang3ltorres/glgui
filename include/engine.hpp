@@ -2,6 +2,7 @@
 
 #include "pch.hpp"
 #include "utils.hpp"
+#include "widgets/button.hpp"
 
 struct Engine {
 
@@ -24,5 +25,6 @@ struct Engine {
 	static bool mouseClick;
 
 	// TODO
-	static std::vector<>
+	static std::vector<glgui::widget::Base*> widgets;
+	static std::vector<glgui::widget::Button*> buttons;
 };

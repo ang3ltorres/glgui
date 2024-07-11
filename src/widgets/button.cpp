@@ -48,6 +48,10 @@ glgui::widget::Button::Button(
 	);
 
 	txrH = new Texture(svg.c_str(), svg.size(), rect.size.x+3, rect.size.y+3);
+
+	// Add
+	Engine::widgets.push_back(this);
+	Engine::buttons.push_back(this);
 }
 
 glgui::widget::Button::~Button()
@@ -55,11 +59,14 @@ glgui::widget::Button::~Button()
 	delete img;
 	delete txr;
 	delete txrH;
+
+	// Remove
+	Engine::widgets.erase(std::find(Engine::widgets.begin(), Engine::widgets.end(), this));
+	Engine::buttons.erase(std::find(Engine::buttons.begin(), Engine::buttons.end(), this));
 }
 
 void glgui::widget::Button::draw()
 {
-
 	// Check mouse position
 	img->texture = rect.collision(Engine::mousePos) ? txrH : txr;
 	img->draw();
