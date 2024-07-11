@@ -109,8 +109,8 @@ void glgui::Engine::processInput() {
 	::processInput(glgui::Engine::window);
 }
 
-void glgui::Engine::clearScreen(std::uint8_t r, std::uint8_t g, std::uint8_t b) {
+void glgui::Engine::clearScreen(const glgui::Color &color) {
 
-	glClearColor(r / 255.0f, g / 255.0f, b / 255.0f, 1.0f);
+	glClearColor(color.r / 255.0f, color.g / 255.0f, color.b / 255.0f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT);
 }

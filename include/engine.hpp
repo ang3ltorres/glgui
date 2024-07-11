@@ -12,7 +12,7 @@ namespace glgui
 		static bool end();
 		static bool windowShouldClose();
 		static void processInput();
-		static void clearScreen(std::uint8_t r = 0, std::uint8_t g = 0, std::uint8_t b = 0);
+		static void clearScreen(const glgui::Color &color);
 
 		Engine() = delete;
 		Engine(const Engine &engine) = delete;

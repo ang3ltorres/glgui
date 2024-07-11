@@ -26,7 +26,7 @@ int main() {
 		if (glgui::Engine::doRender) {
 
 			glgui::Engine::processInput();
-			glgui::Engine::clearScreen(255, 0, 255);
+			glgui::Engine::clearScreen({255, 0, 255});
 
 			glgui::Image::imageShader->use();
 			glgui::Image::imageShader->setValue("projection", glgui::Engine::projection);
